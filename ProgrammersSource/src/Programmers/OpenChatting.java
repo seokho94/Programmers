@@ -1,0 +1,43 @@
+package Programmers;
+
+import java.util.HashMap;
+
+public class OpenChatting {
+	public static String Quiz[] = {"Enter uid1234 Muzi","Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"};
+	public static String[] solution(String record[]) {
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("Enter","님이 들어왔습니다.");
+		hm.put("Leave","님이 나갔습니다.");
+		int count = 0;
+		for(int i=0; i<record.length; i++) {
+			if(record[i].contains("Enter")==true) {
+				String data[] = record[i].split(" ");
+				hm.put(data[1],data[2]);
+				count++;
+			}
+			else if(record[i].contains("Leave")==true) {
+				count++;
+			}
+			else {
+				String data[] = record[i].split(" ");
+				hm.put(data[1],data[2]);
+			}
+		}
+		String[] answer = new String[count];
+		count = 0;
+		for(int i=0; i<record.length; i++) {
+			String data[] = record[i].split(" ");
+			if(data[0].equals("Enter")==true || data[0].equals("Leave")==true){
+				answer[count]=hm.get(data[1])+hm.get(data[0]);
+				count++;
+			}
+		}
+		return answer;
+	}
+	public static void main(String args[]) {
+		String chat[] = solution(Quiz);
+		for(int i=0; i<chat.length; i++) {
+			System.out.println(chat[i]);
+		}
+	}
+}

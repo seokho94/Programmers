@@ -1,0 +1,44 @@
+package Programmers;
+
+public class SecretMap {
+	public static void main(String args[]) {
+		int arr1[] = {46,33,33,22,31,50};
+		int arr2[] = {27,56,19,14,14,10};
+		int n = 6;
+		String map[] = new String[n];
+		for(int i=0; i<n; i++) {
+			long num1 = arr1[i];
+			long num2 = arr2[i];
+			StringBuilder wrap = new StringBuilder();
+			for(int t=0; t<n; t++) {
+				long conversion1 = num1%2;
+				long conversion2 = num2%2;
+				if(conversion1==conversion2 && conversion1==0) {
+					wrap.append(0);
+				}
+				else {
+					wrap.append(1);
+				}
+				num1/=2;
+				num2/=2;
+			}
+			map[i]=wrap.reverse().toString();
+			System.out.println(map[i]);
+		}
+		String answer[] = new String[n];
+		for(int i=0; i<answer.length; i++) {
+			char binary[] = map[i].toCharArray();
+			StringBuilder pattern = new StringBuilder();
+			for(int t=0; t<n; t++) {
+				if(binary[t]=='1') {
+					pattern.append("#");
+				}
+				else pattern.append(" ");
+			}
+			answer[i]=pattern.toString();
+		}
+		for(int i=0; i<answer.length; i++) {
+			System.out.println(answer[i]);
+		}
+	}
+}
